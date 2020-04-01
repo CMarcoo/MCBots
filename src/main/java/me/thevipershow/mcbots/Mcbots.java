@@ -8,7 +8,8 @@ public final class Mcbots extends JavaPlugin {
 
     @Override
     public void onEnable() {
-      
+
+        // Plugin startup logic
 
     }
 
