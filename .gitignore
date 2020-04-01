@@ -24,3 +24,7 @@ hs_err_pid*
 
 .idea
 MCBots.iml
+target/classes/plugin.yml
+target/maven-archiver/pom.properties
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
