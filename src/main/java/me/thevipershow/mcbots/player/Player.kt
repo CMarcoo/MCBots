@@ -35,6 +35,7 @@ class Player() {
             connection.sendPacket(PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc))
             connection.sendPacket(PacketPlayOutNamedEntitySpawn(npc))
         }
+        return true
     }
 
     fun attack(): Boolean {
