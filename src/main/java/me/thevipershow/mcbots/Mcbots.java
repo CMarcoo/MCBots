@@ -1,5 +1,6 @@
 package me.thevipershow.mcbots;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 import me.thevipershow.mcbots.bots.Active;
 import me.thevipershow.mcbots.commands.BotsCommand;
@@ -22,7 +23,7 @@ public final class Mcbots extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         // Plugin logic startup code ->
-        Bukkit.getPluginCommand("bots").setExecutor(new BotsCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("bots")).setExecutor(new BotsCommand());
         Bukkit.getPluginManager().registerEvents(this, this);
     }
 
