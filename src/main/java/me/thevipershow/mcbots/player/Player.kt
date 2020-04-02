@@ -28,7 +28,6 @@ class Player() {
             val op = Bukkit.getServer().getOfflinePlayer(name)
             EntityPlayer(server, world, GameProfile(op.uniqueId, name), PlayerInteractManager(world))
         }
-        player
         val loc: Location = player.location
         npc.setLocation(loc.x, loc.y, loc.z, loc.yaw, loc.pitch)
         for (all in Bukkit.getOnlinePlayers()) {
