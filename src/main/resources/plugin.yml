@@ -1,8 +1,11 @@
-name: McBots
+name: 'McBots'
 version: ${project.version}
 main: me.thevipershow.mcbots.Mcbots
-api-version: 1.13
-prefix: MCBots
-load: STARTUP
+api-version: '1.15'
+prefix: 'MCBots'
+load: 'STARTUP'
 authors: [TheViperShow, fuomag9]
-description: Create minecraft bots.
+description: 'Create minecraft bots.'
+commands:
+  bots:
+    description: 'Main command of MCBots'
