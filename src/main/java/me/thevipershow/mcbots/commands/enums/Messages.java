@@ -13,6 +13,7 @@
 package me.thevipershow.mcbots.commands.enums;
 
 import java.util.Arrays;
+
 import me.thevipershow.spigotchatlib.chat.TextMessage;
 import me.thevipershow.spigotchatlib.chat.builders.HoverMessageBuilder;
 import org.bukkit.command.CommandSender;
@@ -28,7 +29,10 @@ public enum Messages {
             "&8| &f/&bbots spawn &3<&bname&3>",
             "&8----------------"),
     NO_PERMISSION("&4You are missing a permission",
-            "&4Missing permission: &7%s");
+            "&4Missing permission: &7%s"),
+
+    BOT_CREATION_ERROR("&4A bot with this name already exists", "&4Bot name: &7%s");
+
 
     private final String message, hoverMessage[];
 
@@ -52,7 +56,7 @@ public enum Messages {
     public void send(final CommandSender commandSender, final String format) {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            final String[] copyArr = Arrays.stream(this.hoverMessage).map(s -> String.format(s,format)).toArray(String[]::new);
+            final String[] copyArr = Arrays.stream(this.hoverMessage).map(s -> String.format(s, format)).toArray(String[]::new);
             player.spigot().sendMessage(HoverMessageBuilder.buildHover(
                     TextMessage.build("&7[&bMCBots&7]&f: " + this.message).color(),
                     TextMessage.build(copyArr).color()
@@ -61,5 +65,4 @@ public enum Messages {
             commandSender.sendMessage(TextMessage.build(this.hoverMessage).color().getText());
         }
     }
-
 }
