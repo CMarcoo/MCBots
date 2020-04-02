@@ -101,6 +101,13 @@
         </resources>
     </build>
 
+    <licenses>
+        <license>
+            <url>https://unlicense.org/</url>
+            <name>Unlicense</name>
+        </license>
+    </licenses>
+
     <repositories>
         <repository>
             <id>papermc-repo</id>
@@ -114,21 +121,25 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>spigotchatlib</id>
+            <url>https://maven.jetbrains.space/vsnetwork/spigotchatlib</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
+            <groupId>me.thevipershow</groupId>
+            <artifactId>spigotchatlib</artifactId>
+            <version>1.0.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>CraftBukkit</artifactId>
             <version>1.15.2-R0.1-SNAPSHOT</version>
-            <systemPath>${project.basedir}/src/main/nms/craftbukkit-1.15.2.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/nms/spigot-1.15.2.jar</systemPath>
             <scope>system</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.destroystokyo.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
