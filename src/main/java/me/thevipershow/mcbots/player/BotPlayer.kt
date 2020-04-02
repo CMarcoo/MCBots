@@ -26,7 +26,7 @@ class BotPlayer {
 
     @Throws(Exception::class)
     constructor(botName: String, location: Location) {
-        if (!(this in Active.getInstance().botPlayersSet)) {
+        if (this !in Active.getInstance().botPlayersSet) {
             val mcServer = (Bukkit.getServer() as CraftServer).server
             val worldServer = (location.world as CraftWorld).handle
             this.botName = botName
@@ -37,7 +37,7 @@ class BotPlayer {
             showEach()
             Active.getInstance().addBot(this)
         } else {
-            throw Exception("Bot with name '" + botName + "' already exists on the server")
+            throw Exception("Bot with name '$botName' already exists on the server")
         }
     }
 
@@ -51,7 +51,7 @@ class BotPlayer {
         playerConnection.sendPacket(PacketPlayOutNamedEntitySpawn(entityPlayer))
     }
 
-    fun showEach() {
+    private fun showEach() {
         Bukkit.getOnlinePlayers().forEach() { player ->
             val playerConnection: PlayerConnection = (player as CraftPlayer).handle.playerConnection
             playerConnection.sendPacket(PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer))
@@ -59,10 +59,19 @@ class BotPlayer {
         }
     }
 
+    @Throws(java.lang.IllegalArgumentException::class)
     override fun equals(other: Any?): Boolean {
-        if (!(other is BotPlayer)) {
+        if (other !is BotPlayer) {
             throw IllegalArgumentException("Cannot compare BotPlayer with other Objects")
         }
-        return botName.equals(other.botName)
+        return botName == other.botName
+    }
+
+    override fun hashCode(): Int {
+        var result = entityPlayer.hashCode()
+        result = 31 * result + gameProfile.hashCode()
+        result = 31 * result + botName.hashCode()
+        result = 31 * result + location.hashCode()
+        return result
     }
 }
