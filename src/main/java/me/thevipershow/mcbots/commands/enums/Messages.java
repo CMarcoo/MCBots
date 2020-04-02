@@ -61,5 +61,4 @@ public enum Messages {
             commandSender.sendMessage(TextMessage.build(this.hoverMessage).color().getText());
         }
     }
-
 }
