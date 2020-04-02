@@ -13,6 +13,8 @@
 package me.thevipershow.mcbots.bots;
 
 import java.util.HashSet;
+
+import com.mojang.authlib.GameProfile;
 import me.thevipershow.mcbots.player.BotPlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,7 +29,7 @@ public class Active {
         return instance;
     }
 
-    public HashSet<BotPlayer> botPlayersSet = new HashSet<>();
+    public HashSet<BotPlayer> botPlayersSet = new HashSet<BotPlayer>();
 
     public boolean addBot(@NotNull BotPlayer botPlayer) {
         return botPlayersSet.add(botPlayer);

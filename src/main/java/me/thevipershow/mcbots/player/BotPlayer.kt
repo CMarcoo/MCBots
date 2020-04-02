@@ -16,32 +16,22 @@ import org.bukkit.craftbukkit.v1_15_R1.CraftWorld
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer
 import org.bukkit.entity.Player
 import java.util.UUID;
+import java.util.logging.Logger
 
 
-class BotPlayer {
-    val entityPlayer: EntityPlayer
-    val gameProfile: GameProfile
-    val botName: String
-    val location: Location
+class BotPlayer @Throws(Exception::class) constructor(val botName: String, val location: Location) {
+    private lateinit var entityPlayer: EntityPlayer
+    val gameProfile: GameProfile = GameProfile(UUID.randomUUID(), botName)
 
-    @Throws(Exception::class)
-    constructor(botName: String, location: Location) {
-        if (this !in Active.getInstance().botPlayersSet) {
-            val mcServer = (Bukkit.getServer() as CraftServer).server
-            val worldServer = (location.world as CraftWorld).handle
-            this.botName = botName
-            this.location = location
-            gameProfile = GameProfile(UUID.randomUUID(), botName)
-            this.entityPlayer = EntityPlayer(mcServer, worldServer, gameProfile, PlayerInteractManager(worldServer))
-            this.entityPlayer.setLocation(location.x, location.y, location.z, location.yaw, location.pitch)
-            showEach()
-            Active.getInstance().addBot(this)
-        } else {
-            throw Exception("Bot with name '$botName' already exists on the server")
-        }
+    fun create() {
+        val mcServer = (Bukkit.getServer() as CraftServer).server
+        val worldServer = (location.world as CraftWorld).handle
+        this.entityPlayer = EntityPlayer(mcServer, worldServer, gameProfile, PlayerInteractManager(worldServer))
+        this.entityPlayer.setLocation(location.x, location.y, location.z, location.yaw, location.pitch)
+        showEach()
     }
 
-    constructor(botName: String, location: Location, minecraftSkin: SkinTexture) : this(botName, location) {
+    fun setskin(minecraftSkin: SkinTexture){
         this.gameProfile.properties.put("textures", Property("textures", minecraftSkin.value, minecraftSkin.signature))
     }
 
@@ -59,19 +49,7 @@ class BotPlayer {
         }
     }
 
-    @Throws(java.lang.IllegalArgumentException::class)
     override fun equals(other: Any?): Boolean {
-        if (other !is BotPlayer) {
-            throw IllegalArgumentException("Cannot compare BotPlayer with other Objects")
-        }
-        return botName == other.botName
-    }
-
-    override fun hashCode(): Int {
-        var result = entityPlayer.hashCode()
-        result = 31 * result + gameProfile.hashCode()
-        result = 31 * result + botName.hashCode()
-        result = 31 * result + location.hashCode()
-        return result
+        return other is BotPlayer && botName == other.botName
     }
 }
