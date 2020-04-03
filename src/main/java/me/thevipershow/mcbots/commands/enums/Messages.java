@@ -30,8 +30,8 @@ public enum Messages {
             "&8----------------"),
     NO_PERMISSION("&4You are missing a permission",
             "&4Missing permission: &7%s"),
-
-    BOT_CREATION_ERROR("&4A bot with this name already exists", "&4Bot name: &7%s");
+    BOT_CREATION_ERROR("&4A bot with this name already exists", "&4Bot name: &7%s"),
+    UNKNOWN_COMMAND("&4The command you just used does not exist", "&4Try &b/bots help");
 
 
     private final String message, hoverMessage[];

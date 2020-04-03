@@ -1,5 +1,5 @@
 /*
- * 02/04/20, 16:47 - MCBots
+ * 02/04/20, 23:02 - MCBots
  * ------------------------------------------------------------------------------------
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
@@ -10,26 +10,19 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package me.thevipershow.mcbots.bots;
+package me.thevipershow.mcbots.exceptions;
 
-import java.util.HashSet;
-import me.thevipershow.mcbots.player.BotPlayer;
-import org.jetbrains.annotations.NotNull;
+public class BotException extends Exception {
 
-public class Active {
-
-    private Active() {
-    }
-
-    private static final Active instance = new Active();
-
-    public static Active getInstance() {
-        return instance;
-    }
-
-    public HashSet<BotPlayer> botPlayersSet = new HashSet<BotPlayer>();
-
-    public boolean addBot(@NotNull BotPlayer botPlayer) {
-        return botPlayersSet.add(botPlayer);
+    /**
+     * Constructs a new exception with the specified detail message.  The
+     * cause is not initialized, and may subsequently be initialized by
+     * a call to {@link #initCause}.
+     *
+     * @param message the detail message. The detail message is saved for
+     *                later retrieval by the {@link #getMessage()} method.
+     */
+    public BotException(String message) {
+        super(message);
     }
 }
